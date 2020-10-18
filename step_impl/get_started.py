@@ -1,6 +1,7 @@
 import os
 from getgauge.python import before_suite, after_suite, step
 from selenium import webdriver
+import chromedriver_binary
 from selenium.webdriver.chrome.options import Options  
 from selenium.webdriver.common.keys import Keys
 from uuid import uuid1
