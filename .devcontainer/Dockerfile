@@ -15,6 +15,8 @@ COPY library-scripts/python-debian.sh /tmp/library-scripts/
 RUN bash /tmp/library-scripts/python-debian.sh \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
 
+USER codespace
+
 # Install gauge
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -SsL https://downloads.gauge.org/stable | sh
@@ -34,5 +36,3 @@ RUN  apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-# USER codespace
