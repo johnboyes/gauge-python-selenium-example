@@ -11,8 +11,24 @@ RUN if [ "${INSTALL_DOCKER}" = "true" ]; then \
     fi \
     && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
-USER codespace
+# Install gauge
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl -SsL https://downloads.gauge.org/stable | sh
 
-# ** [Optional] Uncomment this section to install additional packages. **
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# Check gauge installed successfully and install plugins
+RUN gauge -v \
+     && gauge install python \
+     && gauge install html-report \
+     && gauge install screenshot \
+     && gauge install spectacle
+
+ARG CHROMIUM_VERSION="73.0.3683.75-1~deb9u1"
+# [Optional] Uncomment this section to install additional OS packages.
+RUN  apt-get update && export DEBIAN_FRONTEND=noninteractive \
+   && apt-get -y install --no-install-recommends chromium=${CHROMIUM_VERSION} \
+# Clean up
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+USER codespace
