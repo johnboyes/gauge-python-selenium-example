@@ -11,6 +11,10 @@ RUN if [ "${INSTALL_DOCKER}" = "true" ]; then \
     fi \
     && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
+COPY library-scripts/python-debian.sh /tmp/library-scripts/
+RUN bash /tmp/library-scripts/python-debian.sh \
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
+
 # Install gauge
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -SsL https://downloads.gauge.org/stable | sh
