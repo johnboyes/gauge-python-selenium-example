@@ -15,6 +15,15 @@ COPY library-scripts/python-debian.sh /tmp/library-scripts/
 RUN bash /tmp/library-scripts/python-debian.sh \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
 
+ARG CHROMIUM_VERSION="73.0.3683.75-1~deb9u1"
+# [Optional] Uncomment this section to install additional OS packages.
+RUN  apt-get update && export DEBIAN_FRONTEND=noninteractive \
+   && apt-get -y install --no-install-recommends chromium=${CHROMIUM_VERSION} \
+# Clean up
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
 USER codespace
 
 # Install gauge
@@ -27,12 +36,3 @@ RUN gauge -v \
      && gauge install html-report \
      && gauge install screenshot \
      && gauge install spectacle
-
-ARG CHROMIUM_VERSION="73.0.3683.75-1~deb9u1"
-# [Optional] Uncomment this section to install additional OS packages.
-RUN  apt-get update && export DEBIAN_FRONTEND=noninteractive \
-   && apt-get -y install --no-install-recommends chromium=${CHROMIUM_VERSION} \
-# Clean up
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
