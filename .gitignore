@@ -10,3 +10,5 @@ reports
 # Gauge - python compiled files
 *.pyc
 
+# pythonenv for github Codespaces
+pythonenv*/
