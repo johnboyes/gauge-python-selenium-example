@@ -28,7 +28,7 @@ USER codespace
 
 # Install gauge
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN curl -SsL https://downloads.gauge.org/stable | sh
+RUN sudo curl -SsL https://downloads.gauge.org/stable | sh
 
 # Check gauge installed successfully and install plugins
 RUN gauge -v \
@@ -37,7 +37,7 @@ RUN gauge -v \
      && gauge install screenshot \
      && gauge install spectacle \
      # Install testrail plugin
-     && git clone https://github.com/ajoecker/gauge-testrail.git \
+     && sudo git clone https://github.com/ajoecker/gauge-testrail.git \
      && mvn -f gauge-testrail/ clean install \
      && mvn -f gauge-testrail/ clean package \
      && gauge install testrail-sync -f gauge-testrail/gauge-testrail-sync/artifacts/testrail-sync-0.0.2.zip \
