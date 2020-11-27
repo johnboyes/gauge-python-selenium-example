@@ -35,4 +35,10 @@ RUN gauge -v \
      && gauge install python \
      && gauge install html-report \
      && gauge install screenshot \
-     && gauge install spectacle
+     && gauge install spectacle \
+     # Install testrail plugin
+     && git clone https://github.com/ajoecker/gauge-testrail.git \
+     && mvn -f gauge-testrail/ clean install \
+     && mvn -f gauge-testrail/ clean package \
+     && gauge install testrail-sync -f gauge-testrail/gauge-testrail-sync/artifacts/testrail-sync-0.0.2.zip \
+     && gauge -v
