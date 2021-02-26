@@ -19,10 +19,9 @@ RUN gauge -v \
      && gauge install screenshot \
      && gauge install spectacle
 
-ARG CHROMIUM_VERSION="83.0.4103.116-1~deb10u3"
 # [Optional] Uncomment this section to install additional OS packages.
 RUN  apt-get update && export DEBIAN_FRONTEND=noninteractive \
-   && apt-get -y install --no-install-recommends chromium=${CHROMIUM_VERSION} \
+   && apt-get -y install --no-install-recommends chromium \
 # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
