@@ -47,3 +47,9 @@ jobs:
         with:
           name: gauge-html-report
           path: reports/html-report/
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: gauge-screenshots
+          path: .gauge/screenshots/
