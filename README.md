@@ -1,3 +1,3 @@
-# Gauge, Python, Selenium and Hoverfly example
+# Gauge, Python and Selenium example
 
-Example end-to-end tests using gauge, python, selenium, and hoverfly
+Example end-to-end executable specifications using Gauge, Python and Selenium
