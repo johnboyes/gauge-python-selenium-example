@@ -41,3 +41,9 @@ jobs:
 
       - name: Run Gauge specs
         run: gauge run specs
+
+      - name: Upload Gauge test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: gauge-html-report
+          path: reports/html-report/
