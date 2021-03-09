@@ -51,5 +51,5 @@ jobs:
       - name: Upload screenshots
         uses: actions/upload-artifact@v2
         with:
-          name: gauge-screenshots
+          name: ${{ matrix.os }}-gauge-screenshots
           path: .gauge/screenshots/
