@@ -26,5 +26,5 @@ jobs:
       - name: Install Gauge
         uses: getgauge/setup-gauge@master
         with:
-          gauge-version: master
+          gauge-version: 1.1.4
           gauge-plugins: python, html-report, screenshot
