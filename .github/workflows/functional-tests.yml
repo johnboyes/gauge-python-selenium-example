@@ -40,7 +40,7 @@ jobs:
           gauge-plugins: python, html-report, screenshot
 
       - name: Run Gauge specs
-        run: gauge run specs
+        run: gauge run specs --fail-safe
 
       - name: Upload Gauge test report
         uses: actions/upload-artifact@v2
