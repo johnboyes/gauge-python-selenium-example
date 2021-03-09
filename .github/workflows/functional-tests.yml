@@ -38,3 +38,6 @@ jobs:
         with:
           gauge-version: 1.1.4
           gauge-plugins: python, html-report, screenshot
+
+      - name: Run Gauge specs
+        run: gauge run specs
